@@ -1,0 +1,81 @@
+{{define "admin/content"}}
+<form class="am-form" id="am-form" action="" enctype="multipart/form-data" method="POST">
+    <fieldset>
+        <legend>查询</legend>
+    {{ if .errorText }}
+        <div class="am-alert am-alert-danger" data-am-alert>
+        {{ .errorText }}
+        </div>
+    {{ end }}
+        <div class="am-form-group">
+            <label for="doc-ipt-email-1">搜索</label>
+            <input type="text" name="desc" class="" id="doc-ipt-email-1" placeholder="文件备注">
+        </div>
+
+        <div class="am-form-group am-cf">
+            <label for="doc-ipt-file-1">原文件(必填)</label>
+            <input type="hidden" name="file_url" id="file-url">
+            <input type="hidden" name="file_name" id="file-name">
+            <p class="am-form-help">要搜索的姓名和学号</p>
+        </div>
+        <p>
+            <button type="submit" class="am-btn am-btn-default am-btn-primary am-disabled" id="submit-btn">提交</button>
+            <a href="/attachments" class="am-btn am-btn-default">返回列表</a>
+        </p>
+    </fieldset>
+</form>
+
+
+<script src='https://cdn.staticfile.org/Plupload/2.1.1/plupload.full.min.js'></script>
+<script src='https://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.min.js'></script>
+<script type="text/javascript">
+    $(function () {
+        var uploader = function (browse_button) {
+            var input = $('#' + browse_button);
+            var uploadTip = $(".upload-tip")
+            Qiniu.uploader({
+                runtimes: 'html5,flash,html4',      // 上传模式,依次退化
+                browse_button: browse_button,         // 上传选择的点选按钮，**必需**
+                uptoken: {{.upToken}},              // Ajax 请求 uptoken 的 Url，**强烈建议设置**（服务端提供）
+                get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的 uptoken
+                domain: "{{.bucketDomain}}",        // bucket 域名，下载资源时用到，**必需**
+                max_file_size: '300mb',             // 最大文件体积限制
+                flash_swf_url: 'path/of/plupload/Moxie.swf',  //引入 flash,相对路径
+                max_retries: 3,                     // 上传失败最大重试次数
+                dragdrop: true,                     // 开启可拖曳上传
+                drop_element: 'am-form',            // 拖曳上传区域元素的 ID，拖曳文件或文件夹后可触发上传
+                chunk_size: '4mb',                  // 分块上传时，每块的体积
+                auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+                unique_names: false,
+                filters: {
+                    prevent_duplicates: false,
+                },
+                init: {
+                    'BeforeUpload': function (up, file) {
+                        uploadTip.removeClass('am-hide').html(file.name + " 上传中，请稍后！<i class='am-icon-spinner am-icon-spin'></i>");
+                        $("#file-name").val(file.name)
+                    },
+                    'FileUploaded': function (up, file, info) {
+                        var domain = up.getOption('domain');
+                        var res = $.parseJSON(info);
+                        var sourceLink = "http://" + domain + "/" + res.key; //获取上传成功后的文件的Url
+                        $("#file-url").val(sourceLink)
+                        console.log(sourceLink)
+                        uploadTip.html($("#file-name").val() + ' 上传成功!');
+                        $("#submit-btn").removeClass("am-disabled")
+                    },
+                    'Error': function (up, err, errTip) {
+                        uploadTip.html($("#file-name").val() + ' 上传失败!');
+                        console.error(errTip);
+                    },
+                    'Key': function (up, file) {
+                        return file.name
+                    }
+                }
+            });
+        }
+        uploader('file')
+    })
+</script>
+
+{{end}}

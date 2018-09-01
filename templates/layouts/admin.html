@@ -1,0 +1,65 @@
+<html class="no-js fixed-layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>学生点名系统</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css"/>
+</head>
+<body>
+<div class="admin-content">
+    {{/*<div class="admin-content-body">*/}}
+        {{/*<div class="am-cf am-padding">*/}}
+            {{/*<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">列表</strong> /*/}}
+                {{/*<small>人数</small>*/}}
+            {{/*</div>*/}}
+            {{/*<a href="#" class="am-btn am-btn-success am-fr">列表</a>*/}}
+        {{/*</div>*/}}
+        {{/*{{if .errText }}*/}}
+            {{/*<div class="am-alert am-alert-danger" align="center" data-am-alert>*/}}
+            {{/*{{ .errText }}*/}}
+            {{/*</div>*/}}
+        {{/*{{else}}*/}}
+           {{/*<div class="am-u-sm-12">*/}}
+            {{/*<table class="am-table am-table-bd am-table-striped admin-content-table">*/}}
+                {{/*<thead>*/}}
+                {{/*<tr>*/}}
+                    {{/*<th>ID</th>*/}}
+                    {{/*<th>姓名</th>*/}}
+                    {{/*<th width="400px">学号</th>*/}}
+                    {{/*<th>原班级</th>*/}}
+                    {{/*<th>现班级</th>*/}}
+                    {{/*<th>性别</th>*/}}
+                    {{/*<th>类别</th>*/}}
+                {{/*</tr>*/}}
+                {{/*</thead>*/}}
+                {{/*<tbody>*/}}
+                {{/*{{range .attachs}}*/}}
+                {{/*<tr>*/}}
+                    {{/*<td>{{.ID}}</td>*/}}
+                    {{/*<td>{{.Name}}</td>*/}}
+                    {{/*<td width="400px;">{{.Number}}</td>*/}}
+                    {{/*<td>{{.OldClass}}</td>*/}}
+                    {{/*<td>{{.NowClass}}</td>*/}}
+                    {{/*<td>{{.Gender}}</td>*/}}
+                    {{/*<td>{{.MasterSubject}}</td>*/}}
+                {{/*</tr>*/}}
+                {{/*{{end}}*/}}
+                {{/*</tbody>*/}}
+            {{/*</table>*/}}
+
+        {{/*</div>*/}}
+        {{/*{{end}}*/}}
+    {{/*</div>*/}}
+    {{template "table" .}}
+</div>
+<script src="https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+</body>
+</html>
+
+

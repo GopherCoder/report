@@ -1,0 +1,14 @@
+body{
+    height: inherit;
+    overflow: auto;
+}
+.admin-content{
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto !important;
+    overflow-y: auto;
+}
+
+.admin-content-table a {
+    color: #0e90d2 !important;
+}

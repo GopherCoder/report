@@ -1,0 +1,66 @@
+{{define "admin/content"}}
+<div class="attachments">
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">列表</strong> /
+            <small>人数</small>
+        </div>
+        <a href="#" class="am-btn am-btn-success am-fr">列表</a>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <table class="am-table am-table-bd am-table-striped admin-content-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th width="400px">学号</th>
+                    <th>原班级</th>
+                    <th>现班级</th>
+                    <th>性别</th>
+                    <th>类别</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range .attachs}}
+                <tr>
+                    <td>{{.ID}}</td>
+                    <td>{{.Name}}</td>
+                    <td width="400px;">
+                      {{.Number}}
+                    </td>
+                    <td>{{.NowClass}}</td>
+                    <td>{{.OldClass}}</td>
+                    <td>{{.Gender}}</td>
+                    <td>{{.MasterSubject}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+
+
+            <!-- 分页信息-->
+            {{/*<div class="am-cf">*/}}
+                {{/*共 {{ .totalCount }} 条记录, 当前第 {{.page }}页*/}}
+                {{/*{{ if gt .totalPage  1 }}*/}}
+                    {{/*<div class="am-fr">*/}}
+                        {{/*<ul class="am-pagination">*/}}
+                        {{/*{{ if gt .page  1 }}*/}}
+                            {{/*<li class="am-active"><a href="/attachments?page={{.prePage}}">«</a></li>*/}}
+                        {{/*{{ else }}*/}}
+                            {{/*<li class="am-disabled"><a href="#">«</a></li>*/}}
+                        {{/*{{ end }}*/}}
+
+                        {{/*{{ if gt .totalPage .page  }}*/}}
+                            {{/*<li class="am-active"><a href="/attachments?page={{.nextPage}}">»</a></li>*/}}
+                        {{/*{{ else }}*/}}
+                            {{/*<li class="am-disabled"><a href="#">»</a></li>*/}}
+                        {{/*{{ end }}*/}}
+                        {{/*</ul>*/}}
+                    {{/*</div>*/}}
+                {{/*{{end}}*/}}
+            {{/*</div>*/}}
+        </div>
+    </div>
+</div>
+
+{{end}}
