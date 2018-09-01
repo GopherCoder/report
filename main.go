@@ -88,6 +88,7 @@ func init() {
 
 	if _, err := os.Stat("students.db"); os.IsExist(err) != true {
 		os.Create("students.db")
+
 	} else {
 		os.Remove("students.db")
 	}
