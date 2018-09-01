@@ -10,7 +10,7 @@ LDFLAGS=-ldflags
 
 
 default:
-	go build -o ${BINARY} -v ${LDFLAGS} -tags=jsoniter
+	go build -o ${BINARY} -tags=jsoniter
 
 
 install:

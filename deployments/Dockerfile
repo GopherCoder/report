@@ -13,18 +13,6 @@ EXPOSE 8082
 
 # 定义工作环境位置
 
-# 时区设定
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo "Asia/Shanghai" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
-
-
-
-# 运行环境初始化
-RUN go get -u github.com/kardianos/govendor
-
-COPY vendor/vendor.json vendor/
-
 COPY Makefile .
 
 RUN make install
