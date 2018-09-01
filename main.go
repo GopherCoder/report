@@ -105,7 +105,7 @@ func init() {
 func StartInit() {
 
 	path, _ := os.Getwd()
-	fullPath := path + "/report/students.xlsx"
+	fullPath := path + "/students.xlsx"
 	excelFileName := fullPath
 	xlFile, err := xlsx.OpenFile(excelFileName)
 	if err != nil {
@@ -193,7 +193,7 @@ func main() {
 		})
 	})
 	r.Static("/assets", "./assets")
-	r.LoadHTMLGlob("./report/templates/**/*")
+	r.LoadHTMLGlob("./templates/**/*")
 
 	r.GET("/attachments/new", nil)
 	r.GET("/attachments/create", nil)
