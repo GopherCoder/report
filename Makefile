@@ -21,3 +21,5 @@ dev:
 
 prod:
 	go build -o ${BINARY} -v ${LDFLAGS} -tags=jsoniter
+
+.PHONY:  default install dev prod

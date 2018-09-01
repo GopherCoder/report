@@ -16,5 +16,3 @@ venus
 tmp
 docs
 
-vendor/*
-!vendor/vendor.json
