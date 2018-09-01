@@ -359,8 +359,8 @@ func searchStudentByNameOrNumber(c *gin.Context) {
 		result[index] = *val.Serialzer()
 	}
 	//c.JSON(http.StatusOK, result)
-	c.HTML(http.StatusOK, "index.html", gin.H{
-		"attaches": result,
-		"count":    false,
+	c.HTML(http.StatusOK, "admin.html", gin.H{
+		"attachs": result,
+		"count":   false,
 	})
 }
